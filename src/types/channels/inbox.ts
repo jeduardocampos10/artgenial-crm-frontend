@@ -544,8 +544,6 @@ export interface WhatsappChannel {
 // ============================================
 
 export interface EvolutionConnectionParams {
-  apiUrl: string;
-  adminToken: string;
   instanceName: string;
   phoneNumber: string;
   proxySettings?: {

@@ -1,4 +1,6 @@
 {
   "title": "Tutoriales",
-  "description": "Aprende a utilizar la plataforma con nuestros tutoriales interactivos."
+  "description": "Aprende a utilizar la plataforma con nuestros tutoriales interactivos.",
+  "gettingStarted": "Conecta un canal, completa la conexión y gestiona conversaciones en ArtGenial CRM.",
+  "connectChannel": "Conectar un canal"
 }

@@ -42,7 +42,7 @@ function SelectField({ label, id, value, options, onChange, placeholder = 'Selec
           fontWeight: 500,
           color: '#fafafa',
           marginBottom: '6px',
-          fontFamily: 'ui-sans-serif, system-ui, sans-serif',
+          fontFamily: 'var(--font-sans)',
         }}
       >
         {label}
@@ -60,7 +60,7 @@ function SelectField({ label, id, value, options, onChange, placeholder = 'Selec
             borderRadius: '8px',
             color: value ? '#fafafa' : '#a1a1aa',
             fontSize: '14px',
-            fontFamily: 'ui-sans-serif, system-ui, sans-serif',
+            fontFamily: 'var(--font-sans)',
             padding: '0 36px 0 12px',
             appearance: 'none',
             WebkitAppearance: 'none',
@@ -69,8 +69,8 @@ function SelectField({ label, id, value, options, onChange, placeholder = 'Selec
             transition: 'border-color 0.15s ease, box-shadow 0.15s ease',
           }}
           onFocus={(e) => {
-            e.target.style.borderColor = '#00ffa7';
-            e.target.style.boxShadow = '0 0 0 2px rgba(0, 255, 167, 0.35)';
+            e.target.style.borderColor = '#FF5A1F';
+            e.target.style.boxShadow = '0 0 0 2px rgba(255, 90, 31, 0.35)';
           }}
           onBlur={(e) => {
             e.target.style.borderColor = value ? '#3f3f46' : '#27272a';
@@ -242,12 +242,12 @@ export default function OnboardingPage() {
           width: 100%;
           height: 40px;
           background: #09090b;
-          border: 0.5px solid #00ffa7;
-          box-shadow: 0 0 0 2px rgba(0, 255, 167, 0.35);
+          border: 0.5px solid #FF5A1F;
+          box-shadow: 0 0 0 2px rgba(255, 90, 31, 0.35);
           border-radius: 8px;
           color: #fafafa;
           font-size: 14px;
-          font-family: ui-sans-serif, system-ui, sans-serif;
+          font-family: var(--font-sans);
           padding: 0 12px;
           outline: none;
           transition: border-color 0.15s ease;
@@ -257,13 +257,13 @@ export default function OnboardingPage() {
         .evo-submit-btn {
           width: 100%;
           height: 40px;
-          background: #00ffa7;
+          background: #FF5A1F;
           color: #000;
           border: none;
           border-radius: 8px;
           font-size: 14px;
           font-weight: 600;
-          font-family: ui-sans-serif, system-ui, sans-serif;
+          font-family: var(--font-sans);
           cursor: pointer;
           transition: opacity 0.2s ease, transform 0.1s ease;
         }
@@ -291,7 +291,7 @@ export default function OnboardingPage() {
           alignItems: 'center',
           justifyContent: 'center',
           padding: '2rem 1rem',
-          fontFamily: 'ui-sans-serif, system-ui, sans-serif',
+          fontFamily: 'var(--font-sans)',
         }}
       >
         {/* Language selector */}
@@ -311,7 +311,7 @@ export default function OnboardingPage() {
               borderRadius: '6px',
               color: '#a1a1aa',
               fontSize: '13px',
-              fontFamily: 'ui-sans-serif, system-ui, sans-serif',
+              fontFamily: 'var(--font-sans)',
               cursor: 'pointer',
               outline: 'none',
               transition: 'background 0.15s, border-color 0.15s',
@@ -380,9 +380,9 @@ export default function OnboardingPage() {
                       borderRadius: '5px',
                       border: 'none',
                       background: isSelected ? 'rgba(0,255,167,0.08)' : 'transparent',
-                      color: isSelected ? '#00ffa7' : '#a1a1aa',
+                      color: isSelected ? '#FF5A1F' : '#a1a1aa',
                       fontSize: '13px',
-                      fontFamily: 'ui-sans-serif, system-ui, sans-serif',
+                      fontFamily: 'var(--font-sans)',
                       cursor: 'pointer',
                       textAlign: 'left',
                       transition: 'background 0.1s, color 0.1s',
@@ -403,7 +403,7 @@ export default function OnboardingPage() {
                     <span>{t(lang.labelKey)}</span>
                     {isSelected && (
                       <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                        <path d="M2 6l3 3 5-5" stroke="#00ffa7" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                        <path d="M2 6l3 3 5-5" stroke="#FF5A1F" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                     )}
                   </button>
@@ -426,7 +426,7 @@ export default function OnboardingPage() {
         >
           {/* Logo */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.75rem' }}>
-            <AppLogo alt="Evo CRM" style={{ height: '30px' }} forceTheme="dark" />
+            <AppLogo alt="ArtGenial CRM" style={{ height: '30px' }} forceTheme="dark" />
           </div>
 
           {/* Title */}
@@ -456,7 +456,7 @@ export default function OnboardingPage() {
                 data-testid="progress-bar-fill"
                 style={{
                   height: '3px',
-                  background: '#00ffa7',
+                  background: '#FF5A1F',
                   borderRadius: '99px',
                   width: `${progressPct}%`,
                   transition: 'width 0.3s ease',
@@ -522,7 +522,7 @@ export default function OnboardingPage() {
                       borderRadius: '8px',
                       color: form.mainChannel ? '#fafafa' : '#a1a1aa',
                       fontSize: '14px',
-                      fontFamily: 'ui-sans-serif, system-ui, sans-serif',
+                      fontFamily: 'var(--font-sans)',
                       padding: '0 36px 0 12px',
                       appearance: 'none',
                       WebkitAppearance: 'none',
@@ -531,8 +531,8 @@ export default function OnboardingPage() {
                       transition: 'border-color 0.15s ease, box-shadow 0.15s ease',
                     }}
                     onFocus={(e) => {
-                      e.target.style.borderColor = '#00ffa7';
-                      e.target.style.boxShadow = '0 0 0 2px rgba(0, 255, 167, 0.35)';
+                      e.target.style.borderColor = '#FF5A1F';
+                      e.target.style.boxShadow = '0 0 0 2px rgba(255, 90, 31, 0.35)';
                     }}
                     onBlur={(e) => {
                       e.target.style.borderColor = form.mainChannel ? '#3f3f46' : '#27272a';

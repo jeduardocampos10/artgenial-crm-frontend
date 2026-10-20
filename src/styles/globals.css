@@ -467,3 +467,25 @@
   --xy-handle-background-color-default: var(--color-muted-foreground);
   --xy-handle-border-color-default: var(--color-foreground);
 }
+
+/* ArtGenial: official logo colors; system fonts avoid external font downloads. */
+:root, .light {
+  --font-sans: 'Segoe UI', Arial, sans-serif;
+  --primary: #0F2A6E;
+  --primary-foreground: #ffffff;
+  --ring: #FF5A1F;
+  --sidebar-primary: #0F2A6E;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-ring: #FF5A1F;
+}
+.dark {
+  --primary: #FF5A1F;
+  --primary-foreground: #111827;
+  --ring: #FF5A1F;
+  --sidebar-primary: #FF5A1F;
+  --sidebar-primary-foreground: #111827;
+  --sidebar-ring: #FF5A1F;
+}
+body { font-family: var(--font-sans); }
+.artgenial-logo { max-width: 100%; }
+.dark .artgenial-logo { background: #ffffff; border-radius: 4px; }

@@ -86,9 +86,6 @@ export const useChannelSubmission = (form?: FormData) => {
 
       // Health check para Evolution API
       if (selectedProvider.id === 'evolution') {
-        // 🔒 SECURITY: When using global config, don't send api_url/admin_token from frontend
-        const useGlobalConfig = config.hasEvolutionConfig === true;
-
         try {
           // Build verify payload
           const verifyPayload: any = {
@@ -115,33 +112,6 @@ export const useChannelSubmission = (form?: FormData) => {
               enable_sync_features: !!form.enable_sync_features,
             },
           };
-
-          // 🔒 SECURITY: Only send api_url/admin_token if NOT using global config
-          if (!useGlobalConfig) {
-            const apiUrl = getStr(form, 'api_url');
-            if (!apiUrl) {
-              toast.error('URL da API é obrigatória');
-              setIsTesting(false);
-              return;
-            }
-
-            // Run health check for custom URL
-            const healthOk = await EvolutionService.healthCheck(apiUrl);
-            if (!healthOk) {
-              result = {
-                success: false,
-                error:
-                  'Health check falhou. Verifique se a URL da Evolution API está correta e acessível.',
-              };
-              setHealthCheckPassed(false);
-              setIsTesting(false);
-              toast.error(result.error);
-              return;
-            }
-
-            verifyPayload.apiUrl = apiUrl;
-            verifyPayload.adminToken = getStr(form, 'admin_token');
-          }
 
           // Backend will run health check if using global config
           await EvolutionService.verifyConnection(verifyPayload);
@@ -493,24 +463,6 @@ export const useChannelSubmission = (form?: FormData) => {
               },
             } as WhatsappNotificamePayload;
           } else if (selectedProvider.id === 'evolution') {
-            // 🔒 SECURITY: When using global config, don't send api_url/admin_token from frontend
-            const useGlobalConfig = config.hasEvolutionConfig === true;
-
-            // Only run health check if NOT using global config (backend will handle it)
-            if (!useGlobalConfig) {
-              const apiUrl = getStr(form, 'api_url');
-              if (!apiUrl) {
-                throw new Error('URL da API é obrigatória');
-              }
-
-              const healthOk = await EvolutionService.healthCheck(apiUrl);
-              if (!healthOk) {
-                throw new Error(
-                  'Health check falhou. Verifique se a URL da Evolution API está correta e acessível.',
-                );
-              }
-            }
-
             // verify connection
             const verifyPayload: any = {
               instanceName: getStr(form, 'instance_name') || getStr(form, 'name'),
@@ -536,12 +488,6 @@ export const useChannelSubmission = (form?: FormData) => {
                 enable_sync_features: !!form.enable_sync_features,
               },
             };
-
-            // 🔒 SECURITY: Only send api_url/admin_token if NOT using global config
-            if (!useGlobalConfig) {
-              verifyPayload.apiUrl = getStr(form, 'api_url');
-              verifyPayload.adminToken = getStr(form, 'admin_token');
-            }
 
             await EvolutionService.verifyConnection(verifyPayload);
 
@@ -570,16 +516,10 @@ export const useChannelSubmission = (form?: FormData) => {
               },
             };
 
-            // 🔒 SECURITY: Only send api_url/admin_token if NOT using global config
-            if (!useGlobalConfig) {
-              providerConfig.api_url = getStr(form, 'api_url');
-              providerConfig.admin_token = getStr(form, 'admin_token');
-            }
-
             payload = {
-              name: getStr(form, 'name') || 'WhatsApp Evolution',
+              name: getStr(form, 'name') || 'ArtGenial WhatsApp',
               display_name:
-                getStr(form, 'display_name') || getStr(form, 'name') || 'WhatsApp Evolution',
+                getStr(form, 'display_name') || getStr(form, 'name') || 'ArtGenial WhatsApp',
               channel: {
                 type: 'whatsapp',
                 phone_number: getStr(form, 'phone_number'),
@@ -655,9 +595,9 @@ export const useChannelSubmission = (form?: FormData) => {
             }
 
             payload = {
-              name: getStr(form, 'name') || 'WhatsApp Evolution Go',
+              name: getStr(form, 'name') || 'ArtGenial WhatsApp Go',
               display_name:
-                getStr(form, 'display_name') || getStr(form, 'name') || 'WhatsApp Evolution Go',
+                getStr(form, 'display_name') || getStr(form, 'name') || 'ArtGenial WhatsApp Go',
               channel: {
                 type: 'whatsapp',
                 phone_number: getStr(form, 'phone_number'),

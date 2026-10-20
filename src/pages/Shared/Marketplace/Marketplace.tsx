@@ -49,19 +49,6 @@ const Marketplace = () => {
   // Simulated data for demonstration
   const mockProducts: MarketplaceProduct[] = [
     {
-      id: '1',
-      name: t('mockProducts.aiAssistant.name'),
-      description: t('mockProducts.aiAssistant.description'),
-      thumbnail: '',
-      author: 'EvoAI Team',
-      version: '1.2.0',
-      tags: ['assistant', 'ai', 'research'],
-      rating: 4.8,
-      downloads: 1250,
-      price: 0,
-      currency: 'USD',
-    },
-    {
       id: '2',
       name: t('mockProducts.customerSupport.name'),
       description: t('mockProducts.customerSupport.description'),

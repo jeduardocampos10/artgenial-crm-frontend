@@ -215,8 +215,8 @@ function useInbox(inbox: Inbox | null): InboxHook {
     else if (is360DialogWhatsAppChannel) whatsAppAPIProviderName = '360Dialog';
     else if (isATwilioWhatsAppChannel) whatsAppAPIProviderName = 'Twilio';
     else if (isAWhatsAppBaileysChannel) whatsAppAPIProviderName = 'Baileys';
-    else if (isAWhatsAppEvolutionChannel) whatsAppAPIProviderName = 'Evolution';
-    else if (isAWhatsAppEvolutionGoChannel) whatsAppAPIProviderName = 'Evolution Go';
+    else if (isAWhatsAppEvolutionChannel) whatsAppAPIProviderName = 'ArtGenial WhatsApp';
+    else if (isAWhatsAppEvolutionGoChannel) whatsAppAPIProviderName = 'ArtGenial WhatsApp Go';
     else if (isAWhatsAppZapiChannel) whatsAppAPIProviderName = 'Z-API';
 
     // Can lock to single conversation

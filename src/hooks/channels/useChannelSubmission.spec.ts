@@ -140,6 +140,60 @@ describe('useChannelSubmission.submitCreate', () => {
     });
   });
 
+  it('omits stale manual credentials from Evolution creation and authorization', async () => {
+    const payload = await submit('whatsapp', 'evolution', {
+      name: 'atendimento',
+      phone_number: '+5511999999999',
+      api_url: 'https://private.example.test',
+      admin_token: 'test-only-admin-token',
+      api_key: 'test-only-api-key',
+      api_hash: 'test-only-api-hash',
+    }, { hasEvolutionConfig: true });
+
+    const authorization = vi.mocked(EvolutionService.verifyConnection).mock.calls[0][0];
+    expect(authorization).not.toHaveProperty('apiUrl');
+    expect(authorization).not.toHaveProperty('adminToken');
+    for (const key of ['api_url', 'admin_token', 'api_key', 'api_hash']) {
+      expect(payload.channel.provider_config).not.toHaveProperty(key);
+    }
+    expect(payload.channel.provider_config.instance_name).toBe('atendimento');
+    expect(EvolutionService.healthCheck).not.toHaveBeenCalled();
+  });
+
+  it('tests Evolution using the backend without forwarding stale credentials', async () => {
+    const form = {
+      name: 'atendimento', phone_number: '+5511999999999',
+      api_url: 'https://private.example.test', admin_token: 'test-only-admin-token',
+    };
+    const { result } = renderHook(() => useChannelSubmission(form));
+    await act(async () => {
+      await result.current.testConnection(
+        { id: 'whatsapp', name: 'WhatsApp', type: 'whatsapp' } as never,
+        { id: 'evolution', name: 'WhatsApp' } as never,
+        form,
+        { hasEvolutionConfig: true, hasEvolutionGoConfig: false },
+      );
+    });
+    expect(result.current.healthCheckPassed).toBe(true);
+    expect(EvolutionService.verifyConnection).toHaveBeenCalledWith(expect.objectContaining({
+      instanceName: 'atendimento', phoneNumber: '+5511999999999',
+    }));
+    expect(vi.mocked(EvolutionService.verifyConnection).mock.calls[0][0]).not.toHaveProperty('adminToken');
+    expect(vi.mocked(EvolutionService.verifyConnection).mock.calls[0][0]).not.toHaveProperty('apiUrl');
+  });
+
+  it('preserves manual credentials for Evolution Go', async () => {
+    vi.mocked(EvolutionGoService.healthCheck).mockResolvedValue(true);
+    vi.mocked(EvolutionGoService.verifyConnection).mockResolvedValue({} as never);
+    const payload = await submit('whatsapp', 'evolution_go', {
+      name: 'go', phone_number: '+5511999999999',
+      api_url: 'https://go.example.test', admin_token: 'test-only-go-token',
+    }, { hasEvolutionGoConfig: false });
+    expect(payload.channel.provider_config).toMatchObject({
+      api_url: 'https://go.example.test', admin_token: 'test-only-go-token',
+    });
+  });
+
   it('confirms the creation on screen', async () => {
     await submit('api', 'api', { name: 'api-inbox', webhook_url: 'https://hook' });
 

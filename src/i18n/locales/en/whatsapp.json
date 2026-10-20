@@ -11,11 +11,11 @@
       "description": "Official WhatsApp Business API with direct integration and best reliability."
     },
     "evolutionV2": {
-      "name": "Evolution API V2",
+      "name": "ArtGenial WhatsApp",
       "description": "Open-source WhatsApp automation with advanced features and customization."
     },
     "evolutionGo": {
-      "name": "Evolution Go",
+      "name": "ArtGenial WhatsApp Go",
       "description": "Modern Go-based WhatsApp API with high performance and stability."
     },
     "notificame": {
@@ -101,8 +101,9 @@
     }
   },
   "evolutionForm": {
-    "title": "Evolution API",
-    "description": "Configure your WhatsApp channel using Evolution API",
+    "unavailable": "WhatsApp is unavailable. Contact your administrator.",
+    "title": "ArtGenial WhatsApp",
+    "description": "Configure your WhatsApp channel using ArtGenial WhatsApp",
     "backButton": "Back",
     "creating": "Creating Channel...",
     "createButton": "Create WhatsApp Channel",
@@ -110,7 +111,7 @@
     "testing": "Testing...",
     "fields": {
       "basicInfo": "Basic Information",
-      "configuration": "Evolution API Configuration",
+      "configuration": "ArtGenial WhatsApp Configuration",
       "displayName": {
         "label": "Display Name",
         "placeholder": "Ex: WhatsApp Support",
@@ -129,12 +130,12 @@
       "baseUrl": {
         "label": "Base URL",
         "placeholder": "https://api.evolution.com",
-        "helpText": "URL of your Evolution API installation"
+        "helpText": "URL of your ArtGenial WhatsApp installation"
       },
       "apiKey": {
         "label": "API Key",
         "placeholder": "Your API key",
-        "helpText": "Access key to Evolution API"
+        "helpText": "Access key to ArtGenial WhatsApp"
       }
     },
     "sections": {
@@ -176,7 +177,7 @@
     },
     "connectionTest": {
       "success": "Connection established successfully!",
-      "error": "Error connecting to Evolution API"
+      "error": "Error connecting to ArtGenial WhatsApp"
     }
   },
   "notificameForm": {
@@ -340,8 +341,8 @@
     }
   },
   "evolutionGoForm": {
-    "title": "Evolution Go API",
-    "description": "Configure your WhatsApp channel using Evolution Go",
+    "title": "ArtGenial WhatsApp Go",
+    "description": "Configure your WhatsApp channel using ArtGenial WhatsApp Go",
     "fields": {
       "displayName": {
         "label": "Display Name",
@@ -389,7 +390,7 @@
       }
     },
     "help": {
-      "title": "Help - Evolution Go",
+      "title": "Help - ArtGenial WhatsApp Go",
       "performance": {
         "title": "Performance",
         "description": "Modern API based on Go with high performance"

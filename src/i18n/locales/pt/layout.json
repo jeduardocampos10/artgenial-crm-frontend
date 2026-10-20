@@ -73,7 +73,8 @@
     "collapse": "Recolher barra lateral",
     "closeSubmenu": "Fechar submenu",
     "footer": {
-      "brand": "Evo CRM",
+      "brand": "ArtGenial CRM",
+      "legalNotices": "Avisos legais",
       "copyright": "© {{year}} Evolution Foundation. All rights reserved.",
       "documentation": "Documentação",
       "support": "Preciso de suporte"

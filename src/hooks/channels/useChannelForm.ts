@@ -86,7 +86,7 @@ export const useChannelForm = () => {
       case 'evolution':
         setForm(prev => ({
           ...prev,
-          name: prev.name || 'WhatsApp Evolution',
+          name: prev.name || 'ArtGenial WhatsApp',
           phone_number: prev.phone_number || '',
           // 🔒 SECURITY: Don't pre-fill api_url from config (it's not exposed anymore)
           api_url: prev.api_url || '',
@@ -113,7 +113,7 @@ export const useChannelForm = () => {
       case 'evolution_go':
         setForm(prev => ({
           ...prev,
-          name: prev.name || 'WhatsApp Evolution Go',
+          name: prev.name || 'ArtGenial WhatsApp Go',
           phone_number: prev.phone_number || '',
           // 🔒 SECURITY: Don't pre-fill api_url from config (it's not exposed anymore)
           api_url: prev.api_url || '',

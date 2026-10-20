@@ -100,14 +100,8 @@ export const useChannelValidation = () => {
       return false;
     }
     if (!hasEvolutionConfig) {
-      if (!getStr(form, 'api_url').trim()) {
-        toast.error('API URL é obrigatório');
-        return false;
-      }
-      if (!getStr(form, 'admin_token').trim()) {
-        toast.error('Admin Token é obrigatório');
-        return false;
-      }
+      toast.error('WhatsApp indisponível. Entre em contato com o administrador.');
+      return false;
     }
     // Validate phone number format (E.164)
     const phonePattern = /^\+[1-9]\d{1,14}$/;

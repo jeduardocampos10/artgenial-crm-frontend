@@ -66,7 +66,7 @@
     },
     "accessToken": {
       "title": "API Access Token",
-      "description": "Use this token to access the Evolution API. Keep it secure and don't share it.",
+      "description": "Use this token to access the ArtGenial CRM. Keep it secure and don't share it.",
       "actions": {
         "copy": "Copy",
         "reset": "Reset Token",

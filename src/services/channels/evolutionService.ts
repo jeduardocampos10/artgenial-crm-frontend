@@ -13,14 +13,11 @@ const EvolutionService = {
    * Verifica se a URL da API está respondendo corretamente
    * Espera: {"status":200,"message":"Welcome to the Evolution API, it is working!",...}
    */
-  async healthCheck(apiUrl: string): Promise<boolean> {
+  async healthCheck(): Promise<boolean> {
     try {
-      const response = await api.get('/evolution/health', {
-        params: { api_url: apiUrl },
-      });
+      const response = await api.get('/evolution/health');
       return response.data?.status === 200;
-    } catch (error) {
-      console.error('Evolution API health check failed:', error);
+    } catch {
       return false;
     }
   },
@@ -30,8 +27,6 @@ const EvolutionService = {
   ): Promise<EvolutionAuthorizationResponse> {
     const requestData = {
       authorization: {
-        api_url: params.apiUrl,
-        admin_token: params.adminToken,
         instance_name: params.instanceName,
         phone_number: params.phoneNumber,
         proxy_settings: params.proxySettings,
@@ -44,11 +39,9 @@ const EvolutionService = {
   },
 
   async refreshQrCode(
-    params: { apiUrl: string; apiHash: string; instanceName: string },
+    params: { instanceName: string },
   ) {
     const requestData = {
-      api_url: params.apiUrl,
-      api_hash: params.apiHash,
       instance_name: params.instanceName,
     };
 
@@ -57,11 +50,9 @@ const EvolutionService = {
   },
 
   async setProxy(
-    params: { apiUrl: string; apiHash: string; instanceName: string; proxySettings: object },
+    params: { instanceName: string; proxySettings: object },
   ) {
     const requestData = {
-      api_url: params.apiUrl,
-      api_hash: params.apiHash,
       instance_name: params.instanceName,
       proxy_settings: params.proxySettings,
     };
@@ -71,11 +62,9 @@ const EvolutionService = {
   },
 
   async setSettings(
-    params: { apiUrl: string; apiHash: string; instanceName: string; instanceSettings: object },
+    params: { instanceName: string; instanceSettings: object },
   ) {
     const requestData = {
-      api_url: params.apiUrl,
-      api_hash: params.apiHash,
       instance_name: params.instanceName,
       instance_settings: params.instanceSettings,
     };

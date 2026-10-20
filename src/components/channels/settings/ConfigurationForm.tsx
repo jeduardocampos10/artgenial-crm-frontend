@@ -527,7 +527,7 @@ const EvolutionWhatsAppConfig: React.FC<{
   const [isLoading, setIsLoading] = useState(false);
   const [showQrModal, setShowQrModal] = useState(false);
   const [connectionSettings, setConnectionSettings] = useState({
-    apiUrl: (inbox?.provider_config?.api_url as string) || '',
+    apiUrl: isEvolutionGo ? (inbox?.provider_config?.api_url as string) || '' : '',
     // Never pre-populate adminToken — avoids exposing the secret in the DOM value attribute.
     // The field is only sent if the user explicitly types a new value.
     adminToken: '',
@@ -535,6 +535,7 @@ const EvolutionWhatsAppConfig: React.FC<{
   const [isUpdatingConnection, setIsUpdatingConnection] = useState(false);
 
   const handleUpdateConnectionSettings = async () => {
+    if (!isEvolutionGo) return;
     if (!connectionSettings.apiUrl.trim()) {
       toast.error(t('settings.configuration.whatsapp.instance.connection.errors.apiUrlRequired'));
       return;
@@ -1356,6 +1357,7 @@ const EvolutionWhatsAppConfig: React.FC<{
       )}
 
       {/* Connection Settings */}
+      {isEvolutionGo && (
       <Card>
         <CardContent className="p-6">
           <div className="flex items-start gap-4">
@@ -1432,6 +1434,8 @@ const EvolutionWhatsAppConfig: React.FC<{
           </div>
         </CardContent>
       </Card>
+
+      )}
 
       {/* Instance Actions */}
       <Card>

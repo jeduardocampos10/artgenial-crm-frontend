@@ -18,3 +18,17 @@ describe('validateByChannelAndProvider — whatsapp without a provider', () => {
     expect(toast.error).toHaveBeenCalledWith('Selecione um provedor');
   });
 });
+
+describe('managed Evolution validation', () => {
+  const form = { name: 'Atendimento', phone_number: '+5511999999999' };
+
+  it('accepts a channel without frontend credentials when globally configured', () => {
+    expect(useChannelValidation().validateByChannelAndProvider('whatsapp', 'evolution', form, { hasEvolutionConfig: true })).toBe(true);
+  });
+
+  it('rejects missing global configuration even if stale manual credentials exist', () => {
+    expect(useChannelValidation().validateByChannelAndProvider('whatsapp', 'evolution', {
+      ...form, api_url: 'https://internal.example', admin_token: 'test-secret',
+    }, { hasEvolutionConfig: false })).toBe(false);
+  });
+});

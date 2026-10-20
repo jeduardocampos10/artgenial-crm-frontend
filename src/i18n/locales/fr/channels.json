@@ -168,12 +168,12 @@
         "description": "API officielle WhatsApp avec intégration directe"
       },
       "evolution": {
-        "name": "Evolution API",
-        "description": "API WhatsApp Evolution - solution robuste"
+        "name": "ArtGenial WhatsApp",
+        "description": "API WhatsApp ArtGenial WhatsApp - solution robuste"
       },
       "evolutionGo": {
-        "name": "Evolution Go",
-        "description": "API WhatsApp Evolution Go - performance optimisée"
+        "name": "ArtGenial WhatsApp Go",
+        "description": "API WhatsApp ArtGenial WhatsApp Go - performance optimisée"
       },
       "notificame": {
         "name": "Notificame",

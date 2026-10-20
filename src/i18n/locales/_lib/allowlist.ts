@@ -45,6 +45,7 @@ export const COMMON_ALLOWED = new Set<string>([
   'MGxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
   '123456789:ABC-DEF1234ghIkl-zyx57W2v1u123ew11',
   // --- brand & product names ---
+  'ArtGenial CRM', 'ArtGenial WhatsApp', 'ArtGenial WhatsApp Go',
   'WhatsApp', 'WhatsApp Cloud', 'WhatsApp Business', 'Telegram', 'Telegram Bot',
   'Instagram', 'Facebook', 'Facebook Messenger', 'Messenger', 'Twilio',
   'Twilio SMS', 'Evolution', 'Evolution API', 'Evolution API V2', 'Evolution Go',

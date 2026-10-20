@@ -237,7 +237,7 @@ export const WIDGET_EDITOR_MENU_OPTIONS = ['strong', 'em', 'link', 'undo', 'redo
 // Color picker presets for widget
 export const WIDGET_COLOR_PRESETS = [
   '#1f93ff', // Default blue
-  '#00d4aa', // Evolution green
+  '#0F2A6E', // ArtGenial blue
   '#ff6b6b', // Red
   '#4ecdc4', // Teal
   '#45b7d1', // Light blue

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { useLanguage } from '@/hooks/useLanguage';
 
 const Tutorials = () => {
@@ -12,15 +13,10 @@ const Tutorials = () => {
         </div>
       </div>
       <div className="flex-1 px-6 pb-6">
-        <div className="w-full h-full min-h-[700px] rounded-lg overflow-hidden border border-border">
-          <iframe
-            src="https://gateway.evolutionfoundation.com.br/embed/phrP4kOXKKROpUxwCoJJsCn8wVLzRVhuyrufdNS9raghOOmw74XBYzO5NfKbc8UY"
-            width="100%"
-            height="100%"
-            frameBorder="0"
-            allow="autoplay; fullscreen"
-            style={{ border: 'none', borderRadius: '8px', minHeight: '700px' }}
-          />
+        <div className="rounded-lg border border-border p-6 space-y-4">
+          <h2 className="text-xl font-semibold">ArtGenial CRM</h2>
+          <p className="text-muted-foreground">{t('gettingStarted')}</p>
+          <Link to="/channels/new" className="inline-flex text-primary underline">{t('connectChannel')}</Link>
         </div>
       </div>
     </div>

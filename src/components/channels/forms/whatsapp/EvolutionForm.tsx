@@ -20,25 +20,9 @@ export const EvolutionForm = ({ form, onFormChange, hasEvolutionConfig }: Evolut
     <div className="space-y-6">
       {/* Basic Configuration - Only show API/Token if not auto-filled */}
       {!hasEvolutionConfig && (
-        <>
-          <FormField
-            label={t('evolutionForm.fields.baseUrl.label')}
-            value={getStr('api_url')}
-            onChange={value => onFormChange('api_url', value)}
-            placeholder={t('evolutionForm.fields.baseUrl.placeholder')}
-            type="url"
-            required
-          />
-
-          <FormField
-            label={t('evolutionForm.fields.apiKey.label')}
-            value={getStr('admin_token')}
-            onChange={value => onFormChange('admin_token', value)}
-            placeholder={t('evolutionForm.fields.apiKey.placeholder')}
-            type="password"
-            required
-          />
-        </>
+        <p role="status" className="text-sm text-muted-foreground">
+          {t('evolutionForm.unavailable')}
+        </p>
       )}
 
       <div data-tour="whatsapp-credentials">
