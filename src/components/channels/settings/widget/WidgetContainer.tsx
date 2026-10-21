@@ -47,7 +47,7 @@ export default function WidgetContainer({ config }: WidgetContainerProps) {
             {/* ArtGenial Branding */}
             <div className="py-2.5 flex justify-center border-t border-slate-100 dark:border-slate-700">
               <a className="items-center gap-1 text-slate-500 dark:text-slate-400 cursor-pointer flex filter grayscale opacity-90 hover:grayscale-0 hover:opacity-100 text-xs">
-                <img src="/ArtGenial/CRM/sidebar-icone-32.png" alt="" className="w-4 h-4" />
+                <img src="/ArtGenial/02_Icones/artgenial-icone-principal-1024.png" alt="" className="w-4 h-4" />
                 <span>{t('settings.widget.container.poweredBy')} ArtGenial CRM</span>
               </a>
             </div>

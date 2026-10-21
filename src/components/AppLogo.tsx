@@ -10,18 +10,33 @@ interface AppLogoProps {
 
 export function AppLogo({ className, alt = 'ArtGenial CRM', style, forceTheme, variant = 'login' }: AppLogoProps) {
   const assets = {
-    login: ['login-logo.png', 'login-logo@2x.png'],
-    sidebar: ['sidebar-logo-h32.png', 'sidebar-logo-h32@2x.png'],
-    icon: ['sidebar-icone-32.png', 'sidebar-icone@2x-64.png'],
+    login: {
+      light: '/ArtGenial/01_Logos_Horizontais/artgenial-logo-principal-fundo-claro.png',
+      dark: '/ArtGenial/01_Logos_Horizontais/artgenial-logo-fundo-escuro-transparente.png',
+    },
+    sidebar: {
+      light: '/ArtGenial/01_Logos_Horizontais/artgenial-logo-reduzida-fundo-claro.png',
+      dark: '/ArtGenial/01_Logos_Horizontais/artgenial-logo-reduzida-fundo-escuro.png',
+    },
+    icon: {
+      light: '/ArtGenial/02_Icones/artgenial-icone-principal-1024.png',
+      dark: '/ArtGenial/02_Icones/artgenial-icone-principal-1024.png',
+    },
   };
-  const [src, retina] = assets[variant];
+  const imageProps = {
+    alt,
+    style: { objectFit: 'contain' as const, ...style },
+  };
+  const logoClass = `artgenial-logo ${className ?? ''}`;
+
+  if (forceTheme) {
+    return <img src={assets[variant][forceTheme]} className={logoClass} {...imageProps} />;
+  }
+
   return (
-    <img
-      src={`/ArtGenial/CRM/${src}`}
-      srcSet={`/ArtGenial/CRM/${src} 1x, /ArtGenial/CRM/${retina} 2x`}
-      alt={alt}
-      className={`artgenial-logo ${className ?? ''}`}
-      style={{ objectFit: 'contain', ...(forceTheme === 'dark' ? { background: '#ffffff', borderRadius: 4 } : {}), ...style }}
-    />
+    <>
+      <img src={assets[variant].light} className={`${logoClass} dark:hidden`} {...imageProps} />
+      <img src={assets[variant].dark} className={`${logoClass} hidden dark:block`} {...imageProps} />
+    </>
   );
 }

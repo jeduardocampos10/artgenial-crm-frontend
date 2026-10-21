@@ -5,8 +5,8 @@ import { getBrandIcon, getBrandColor } from '@/components/BrandIcon';
 // by Vite into correct asset URLs; `new URL('@/...', import.meta.url)` is NOT
 // (the alias breaks the transform) — it produced broken icons when inlined.
 import iconWhatsappCloud from '@/assets/channels/whatsapp-cloud.svg';
-const iconEvolutionApi = '/ArtGenial/CRM/sidebar-icone@2x-64.png';
-const iconEvolutionGo = '/ArtGenial/CRM/sidebar-icone@2x-64.png';
+const iconEvolutionApi = '/ArtGenial/02_Icones/artgenial-icone-principal-1024.png';
+const iconEvolutionGo = '/ArtGenial/02_Icones/artgenial-icone-principal-1024.png';
 import iconNotificame from '@/assets/channels/notificame.png';
 import iconZapi from '@/assets/channels/zapi.png';
 import iconTwilio from '@/assets/channels/twilio.png';
