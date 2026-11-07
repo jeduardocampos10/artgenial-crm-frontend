@@ -4,6 +4,7 @@ import { useLanguage } from '@/hooks/useLanguage';
 import EmptyState from '@/components/base/EmptyState';
 import ContactDetailsCard from './ContactDetailsCard';
 import ContactNotesCard from './ContactNotesCard';
+import ContactMemoriesCard from './ContactMemoriesCard';
 import ContactPipelineItem from '@/components/pipelines/ContactPipelineItem';
 import ContactEventsTab from './ContactEventsTab';
 import ContactEventsErrorBoundary from './ContactEventsErrorBoundary';
@@ -86,6 +87,7 @@ export default function ContactDetailPage({
                 <ContactPipelineItem contactId={contact.id} onPipelineUpdated={onContactUpdated} />
               </div>
               <ContactNotesCard contactId={contact.id} />
+              <ContactMemoriesCard contactId={contact.id} />
             </div>
             <div className="min-w-0">
               <ContactEventsErrorBoundary

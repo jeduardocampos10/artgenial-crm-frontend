@@ -843,14 +843,30 @@ export function ConversationsProvider({ children }: { children: React.ReactNode 
   const assignAgent = useCallback(
     async (conversationId: string, assigneeId: string | null) => {
       try {
-        const updatedConversation = await conversationAPI.assignConversation(
+        const assignment = await conversationAPI.assignConversation(
           conversationId,
           assigneeId,
         );
-        dispatch({
-          type: 'UPDATE_CONVERSATION',
-          payload: updatedConversation as unknown as Conversation,
-        });
+        const currentConversation = findConversationByAnyId(conversationId);
+
+        if (currentConversation) {
+          dispatch({
+            type: 'UPDATE_CONVERSATION',
+            payload: {
+              ...currentConversation,
+              assignee: assignment.assignee ?? null,
+              assignee_id: assignment.assignee?.id ?? null,
+            },
+          });
+        } else {
+          // The assignment endpoint deliberately returns a partial payload. If
+          // this conversation is outside the loaded list, retrieve the server
+          // snapshot rather than placing a partial record in the reducer.
+          const refreshed = await conversationAPI.getConversation(conversationId);
+          if (refreshed?.id) {
+            dispatch({ type: 'UPDATE_CONVERSATION', payload: refreshed });
+          }
+        }
 
         // Assignment moves a conversation in and out of "mine".
         useUnansweredConversationsStore.getState().fetch();
@@ -871,23 +887,34 @@ export function ConversationsProvider({ children }: { children: React.ReactNode 
         throw error;
       }
     },
-    [t],
+    [findConversationByAnyId, t],
   );
 
   const assignTeam = useCallback(
     async (conversationId: string, teamId: string | null) => {
       try {
-        const updatedConversation = await conversationAPI.assignConversation(
+        const assignment = await conversationAPI.assignConversation(
           conversationId,
           null,
           teamId,
         );
+        const currentConversation = findConversationByAnyId(conversationId);
 
-        // Update local state
-        dispatch({
-          type: 'UPDATE_CONVERSATION',
-          payload: updatedConversation as unknown as Conversation,
-        });
+        if (currentConversation) {
+          dispatch({
+            type: 'UPDATE_CONVERSATION',
+            payload: {
+              ...currentConversation,
+              team: assignment.team ?? null,
+              team_id: assignment.team?.id ?? null,
+            },
+          });
+        } else {
+          const refreshed = await conversationAPI.getConversation(conversationId);
+          if (refreshed?.id) {
+            dispatch({ type: 'UPDATE_CONVERSATION', payload: refreshed });
+          }
+        }
 
         toast.success(
           teamId
@@ -905,7 +932,7 @@ export function ConversationsProvider({ children }: { children: React.ReactNode 
         throw error;
       }
     },
-    [t],
+    [findConversationByAnyId, t],
   );
 
   const assignLabels = useCallback(async (conversationId: string, labels: string[]) => {

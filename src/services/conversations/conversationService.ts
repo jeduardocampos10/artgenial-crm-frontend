@@ -13,6 +13,11 @@ import type {
   ConversationsResponse,
 } from '@/types/chat/api';
 
+// POST /assignments intentionally returns only the resource that changed, not a
+// complete Conversation. Keep that boundary explicit so callers cannot dispatch
+// the partial payload as if it were a conversation snapshot.
+export type ConversationAssignmentResponse = Partial<Pick<Conversation, 'assignee' | 'team'>>;
+
 export const conversationAPI = {
   // Create new conversation
   async create(data: ConversationCreateData): Promise<Conversation> {
@@ -115,12 +120,13 @@ export const conversationAPI = {
     conversationId: string,
     assigneeId: string | null,
     teamId?: string | null,
-  ): Promise<Conversation> {
-    const response = await api.post(`/conversations/${conversationId}/assignments`, {
-      assignee_id: assigneeId,
-      team_id: teamId,
-    });
-    return extractData<any>(response);
+  ): Promise<ConversationAssignmentResponse> {
+    // The API chooses the operation by key presence: sending assignee_id: null
+    // alongside team_id makes it unassign the agent and silently skip the team.
+    // Send exactly one operation per request.
+    const payload = teamId === undefined ? { assignee_id: assigneeId } : { team_id: teamId };
+    const response = await api.post(`/conversations/${conversationId}/assignments`, payload);
+    return extractData<ConversationAssignmentResponse>(response);
   },
 
   // Update conversation status

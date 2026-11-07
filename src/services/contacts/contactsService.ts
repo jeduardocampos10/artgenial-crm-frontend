@@ -20,6 +20,8 @@ import type {
   ContactNoteDeleteResponse,
   ContactConversation,
   ContactableInboxes,
+  ContactMemoriesParams,
+  ContactMemoriesResponse,
 } from '@/types/contacts';
 
 // POST /contacts nests the contact under `data.contact`, while GET and PATCH put it at
@@ -258,6 +260,17 @@ class ContactsService {
   async getContactNotes(contactId: string): Promise<ContactNotesResponse> {
     const response = await api.get(`/contacts/${contactId}/notes`);
     return extractResponse<ContactNote>(response) as ContactNotesResponse;
+  }
+
+  // Customer 360 memory is a separate, read-only and intentionally redacted
+  // endpoint. Keep it out of Contact so normal contact editing can never send
+  // memory data back to the API.
+  async getContactMemories(
+    contactId: string,
+    params: ContactMemoriesParams = {},
+  ): Promise<ContactMemoriesResponse> {
+    const response = await api.get(`/contacts/${contactId}/memories`, { params });
+    return extractResponse(response) as ContactMemoriesResponse;
   }
 
   async createContactNote(contactId: string, content: string): Promise<ContactNote> {

@@ -739,6 +739,19 @@
       "pipeline_stage_changed": "Etapa del pipeline cambiada"
     }
   },
+  "memory": {
+    "title": "Memoria Customer 360",
+    "loading": "Cargando memorias...",
+    "loadingMore": "Cargando más...",
+    "empty": "No hay memorias de clientes disponibles para este contacto.",
+    "error": "No se pudieron cargar las memorias de clientes.",
+    "retry": "Reintentar",
+    "loadMore": "Cargar más",
+    "fact": "Hecho",
+    "inference": "Inferencia",
+    "observedAt": "Observado",
+    "evidenceCount": "{{count}} evidencia(s)"
+  },
   "notes": {
     "title": "Notas",
     "addPlaceholder": "Escribe una nota sobre este contacto...",
