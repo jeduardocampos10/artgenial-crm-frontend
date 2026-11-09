@@ -709,6 +709,12 @@
         }
       },
       "behavior": {
+        "humanService": "Servizio umano ArtGenial",
+        "humanServiceDescription": "Attiva la skill versionata per un servizio naturale, trasparente e supervisionato",
+        "eliteSales": "Vendite Elite ArtGenial",
+        "eliteSalesDescription": "Attiva la vendita consulenziale supervisionata senza autorizzare sconti o impegni commerciali",
+        "customerJourney": "Percorso completo di assistenza e crescita",
+        "customerJourneyDescription": "Coordina accoglienza, vendite, supporto, post-vendita, reclami, cancellazione, fidelizzazione ed espansione etica",
         "transferToHuman": "Trasferire a umano",
         "transferToHumanDescription": "Consente all'agente di trasferire la conversazione a un agente umano quando necessario",
         "useEmojis": "Usare Emoji nelle Risposte",

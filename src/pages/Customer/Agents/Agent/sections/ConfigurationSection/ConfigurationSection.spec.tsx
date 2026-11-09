@@ -37,6 +37,9 @@ const CARD_TITLES = {
 };
 
 const behaviorSettings = {
+  humanService: false,
+  eliteSales: false,
+  customerJourney: false,
   transferToHuman: false,
   useEmojis: false,
   allowReminders: false,

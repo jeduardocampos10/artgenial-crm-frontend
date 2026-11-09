@@ -117,6 +117,9 @@ const AgentEditPage = () => {
   });
 
   const [behaviorSettings, setBehaviorSettings] = useState({
+    humanService: false,
+    eliteSales: false,
+    customerJourney: false,
     transferToHuman: false,
     useEmojis: false,
     allowReminders: false,
@@ -433,6 +436,9 @@ const AgentEditPage = () => {
 
         const config = agentData.config as Record<string, unknown>;
         setBehaviorSettings({
+          humanService: config?.human_service_skill_enabled === true,
+          eliteSales: config?.elite_sales_skill_enabled === true,
+          customerJourney: config?.customer_journey_skill_enabled === true,
           transferToHuman: (config?.transfer_to_human as boolean) || false,
           useEmojis: (config?.use_emojis as boolean) || false,
           allowReminders: (config?.allow_reminders as boolean) || false,
@@ -607,6 +613,9 @@ const AgentEditPage = () => {
           mcp_servers: mcpServers.map(server => server as unknown as Record<string, unknown>),
           custom_mcp_server_ids: customMCPServerIds,
           integrations: integrations,
+          human_service_skill_enabled: behaviorSettings.humanService,
+          elite_sales_skill_enabled: behaviorSettings.eliteSales,
+          customer_journey_skill_enabled: behaviorSettings.customerJourney,
           transfer_to_human: behaviorSettings.transferToHuman,
           use_emojis: behaviorSettings.useEmojis,
           allow_reminders: behaviorSettings.allowReminders,
@@ -646,6 +655,9 @@ const AgentEditPage = () => {
           mcp_servers: mcpServers.map(server => server as unknown as Record<string, unknown>),
           custom_mcp_server_ids: customMCPServerIds,
           integrations: integrations,
+          human_service_skill_enabled: behaviorSettings.humanService,
+          elite_sales_skill_enabled: behaviorSettings.eliteSales,
+          customer_journey_skill_enabled: behaviorSettings.customerJourney,
           transfer_to_human: behaviorSettings.transferToHuman,
           use_emojis: behaviorSettings.useEmojis,
           allow_reminders: behaviorSettings.allowReminders,
@@ -683,6 +695,9 @@ const AgentEditPage = () => {
           mcp_servers: mcpServers.map(server => server as unknown as Record<string, unknown>),
           custom_mcp_server_ids: customMCPServerIds,
           integrations: integrations,
+          human_service_skill_enabled: behaviorSettings.humanService,
+          elite_sales_skill_enabled: behaviorSettings.eliteSales,
+          customer_journey_skill_enabled: behaviorSettings.customerJourney,
           transfer_to_human: behaviorSettings.transferToHuman,
           use_emojis: behaviorSettings.useEmojis,
           allow_reminders: behaviorSettings.allowReminders,
@@ -733,6 +748,9 @@ const AgentEditPage = () => {
           mcp_servers: mcpServers.map(server => server as unknown as Record<string, unknown>),
           custom_mcp_server_ids: customMCPServerIds,
           integrations: integrations,
+          human_service_skill_enabled: behaviorSettings.humanService,
+          elite_sales_skill_enabled: behaviorSettings.eliteSales,
+          customer_journey_skill_enabled: behaviorSettings.customerJourney,
           transfer_to_human: behaviorSettings.transferToHuman,
           use_emojis: behaviorSettings.useEmojis,
           allow_reminders: behaviorSettings.allowReminders,
