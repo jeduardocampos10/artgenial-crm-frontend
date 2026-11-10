@@ -33,6 +33,8 @@ const settings: BehaviorSettings = {
   humanService: false,
   eliteSales: false,
   customerJourney: false,
+  scopeGuard: false,
+  leadPipelineManagement: false,
   transferToHuman: false,
   useEmojis: false,
   allowReminders: false,
@@ -120,6 +122,21 @@ describe('BehaviorPanel versioned skills', () => {
     expect(screen.getByLabelText('elite-sales').getAttribute('aria-pressed')).toBe('true');
     expect(screen.getByLabelText('human-service').hasAttribute('disabled')).toBe(true);
     expect(screen.getByLabelText('elite-sales').hasAttribute('disabled')).toBe(true);
+  });
+
+  it('shows scope and pipeline skills disabled by default', () => {
+    render(
+      <BehaviorPanel
+        behaviorSettings={settings}
+        onBehaviorSettingsChange={vi.fn()}
+        onShowTransferRulesModal={vi.fn()}
+        onShowPipelineRulesModal={vi.fn()}
+        onShowContactEditModal={vi.fn()}
+      />
+    );
+
+    expect(screen.getByLabelText('scope-guard').getAttribute('aria-pressed')).toBe('false');
+    expect(screen.getByLabelText('lead-pipeline-management').getAttribute('aria-pressed')).toBe('false');
   });
 
   it('persists the operator toggle through the behavior callback', () => {

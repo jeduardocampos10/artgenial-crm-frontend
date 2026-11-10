@@ -137,3 +137,32 @@ export interface CustomerDashboardResponse {
   trends: CustomerDashboardTrends;
   capabilities: CustomerDashboardCapabilities;
 }
+
+
+export interface DailySummaryResponse {
+  date: string;
+  timezone: string;
+  generated_at: string;
+  conversations: {
+    created: number;
+    resolved: number;
+    open_now: number;
+    unattended_now: number;
+    unassigned_now: number;
+  };
+  messages: { incoming: number; outgoing: number };
+  pipeline: {
+    new_leads: number;
+    new_deals: number;
+    new_items: number;
+    active_now: number;
+    completed_today: number;
+  };
+  tasks: {
+    due_today: number;
+    overdue: number;
+    completed_today: number;
+    urgent_open: number;
+  };
+  highlights: Array<{ kind: 'info' | 'warning' | 'critical'; code: string; text: string }>;
+}

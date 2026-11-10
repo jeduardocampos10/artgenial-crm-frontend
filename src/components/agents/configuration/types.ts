@@ -18,6 +18,8 @@ export interface BehaviorSettings {
   humanService: boolean;
   eliteSales: boolean;
   customerJourney: boolean;
+  scopeGuard: boolean;
+  leadPipelineManagement: boolean;
   transferToHuman: boolean;
   useEmojis: boolean;
   allowReminders: boolean;
