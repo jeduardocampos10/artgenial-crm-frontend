@@ -17,7 +17,6 @@ export const AI_PROVIDERS: AiProvider[] = [
   { value: 'deepseek', label: 'DeepSeek' },
   { value: 'together_ai', label: 'Together AI' },
   { value: 'fireworks_ai', label: 'Fireworks AI' },
-  { value: 'perplexity', label: 'Perplexity' },
   { value: 'bedrock', label: 'AWS Bedrock' },
   { value: 'vertex_ai', label: 'Google Vertex AI' },
   { value: CUSTOM_OPENAI_PROVIDER, label: 'Custom (OpenAI-compatible)' },

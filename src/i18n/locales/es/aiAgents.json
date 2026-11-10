@@ -709,6 +709,16 @@
         }
       },
       "behavior": {
+        "humanService": "Atención humana ArtGenial",
+        "humanServiceDescription": "Activa la habilidad versionada para una atención natural, transparente y supervisada",
+        "eliteSales": "Ventas Elite ArtGenial",
+        "eliteSalesDescription": "Activa la venta consultiva supervisada sin autorizar descuentos ni compromisos comerciales",
+        "customerJourney": "Recorrido completo de atención y crecimiento",
+        "customerJourneyDescription": "Coordina recepción, ventas, soporte, posventa, reclamaciones, cancelación, retención y expansión ética",
+        "scopeGuard": "Protección del contexto de la empresa",
+        "scopeGuardDescription": "Bloquea orientaciones fuera de la atención y redirige al sector y a las principales dificultades de la empresa",
+        "leadPipelineManagement": "Gestión supervisada de leads y pipeline",
+        "leadPipelineManagementDescription": "Orienta la calificación y las etapas sin conceder permiso automático para modificar el CRM",
         "transferToHuman": "Transferir a humano",
         "transferToHumanDescription": "Permite que el agente transfiera la conversación a un agente humano cuando sea necesario",
         "useEmojis": "Usar Emojis en las Respuestas",

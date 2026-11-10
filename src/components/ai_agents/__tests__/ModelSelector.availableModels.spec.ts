@@ -14,7 +14,6 @@ const PROVIDER_PREFIX: Record<string, string> = {
   deepseek: 'deepseek/',
   together_ai: 'together_ai/',
   fireworks_ai: 'fireworks_ai/',
-  perplexity: 'perplexity/',
   bedrock: 'bedrock/',
   vertex_ai: 'vertex_ai/',
 };

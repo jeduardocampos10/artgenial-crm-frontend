@@ -9,11 +9,12 @@ import TeamsService from '@/services/teams/teamsService';
 import InboxesService from '@/services/channels/inboxesService';
 import { usersService } from '@/services/users';
 import { customerDashboardService } from '@/services/dashboard/customerDashboardService';
-import type { CustomerDashboardParams, CustomerDashboardResponse } from '@/types/analytics/dashboard';
+import type { CustomerDashboardParams, CustomerDashboardResponse, DailySummaryResponse } from '@/types/analytics/dashboard';
 import DashboardFiltersDialog from './components/DashboardFiltersDialog';
 import DashboardMetricsSection from './components/DashboardMetricsSection';
 import DashboardTrendsSection from './components/DashboardTrendsSection';
 import DashboardPerformanceSection from './components/DashboardPerformanceSection';
+import DailySummaryCard from './components/DailySummaryCard';
 import type { DashboardFilterState, DashboardOption } from './components/types';
 import { DashboardTour } from '@/tours';
 
@@ -90,6 +91,9 @@ const CustomerDashboardPage = () => {
   const [data, setData] = useState<CustomerDashboardResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [dailySummary, setDailySummary] = useState<DailySummaryResponse | null>(null);
+  const [dailySummaryLoading, setDailySummaryLoading] = useState(true);
+  const [dailySummaryError, setDailySummaryError] = useState<string | null>(null);
   const [draftFilters, setDraftFilters] = useState<DashboardFilterState>(defaultFilters);
   const [appliedFilters, setAppliedFilters] = useState<DashboardFilterState>(defaultFilters);
   const [filterModalOpen, setFilterModalOpen] = useState(false);
@@ -116,6 +120,28 @@ const CustomerDashboardPage = () => {
   useEffect(() => {
     loadDashboard(appliedFilters);
   }, [appliedFilters, loadDashboard]);
+
+  const loadDailySummary = useCallback(async () => {
+    setDailySummaryLoading(true);
+    setDailySummaryError(null);
+    try {
+      const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'America/Sao_Paulo';
+      const summary = await customerDashboardService.getDailySummary({
+        date: toDateInputValue(new Date()),
+        timezone,
+      });
+      setDailySummary(summary);
+    } catch (err) {
+      console.error('Error loading daily summary:', err);
+      setDailySummaryError('Falha ao carregar o resumo diário');
+    } finally {
+      setDailySummaryLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    loadDailySummary();
+  }, [loadDailySummary]);
 
   useEffect(() => {
     const loadFilterOptions = async () => {
@@ -288,6 +314,13 @@ const CustomerDashboardPage = () => {
           {currentPeriodLabel} ({data.period.days} dias)
         </Badge>
       </div>
+
+      <DailySummaryCard
+        data={dailySummary}
+        loading={dailySummaryLoading}
+        error={dailySummaryError}
+        onRefresh={loadDailySummary}
+      />
 
       <div data-tour="dashboard-metrics">
         <DashboardMetricsSection data={data} t={t} />

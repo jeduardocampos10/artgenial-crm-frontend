@@ -17,6 +17,11 @@ import {
   Edit3,
   Tag,
   ShoppingCart,
+  HeartHandshake,
+  BadgeDollarSign,
+  Sparkles,
+  ShieldCheck,
+  Waypoints,
 } from 'lucide-react';
 import { BehaviorSettings } from './types';
 import AgentToggle from './AgentToggle';
@@ -40,6 +45,119 @@ export const BehaviorPanel = ({
 
   return (
     <div className="space-y-4">
+      <div className="flex items-center justify-between gap-4 border-t border-border py-[18px] first:border-t-0">
+        <div className="flex items-start gap-3 flex-1">
+          <HeartHandshake className="h-5 w-5 text-rose-500 mt-0.5" />
+          <div className="flex-1">
+            <Label htmlFor="human-service" className="font-medium cursor-pointer">
+              {t('edit.configuration.behavior.humanService') || 'Atendimento humano ArtGenial'}
+            </Label>
+            <p className="text-sm text-muted-foreground mt-1">
+              {t('edit.configuration.behavior.humanServiceDescription') ||
+                'Ativa a skill versionada de atendimento natural, transparente e supervisionado'}
+            </p>
+          </div>
+        </div>
+        <AgentToggle
+          id="human-service"
+          checked={behaviorSettings.humanService || behaviorSettings.customerJourney}
+          disabled={behaviorSettings.customerJourney}
+          onCheckedChange={checked =>
+            onBehaviorSettingsChange({ ...behaviorSettings, humanService: checked })
+          }
+        />
+      </div>
+
+      <div className="flex items-center justify-between gap-4 border-t border-border py-[18px] first:border-t-0">
+        <div className="flex items-start gap-3 flex-1">
+          <BadgeDollarSign className="h-5 w-5 text-emerald-500 mt-0.5" />
+          <div className="flex-1">
+            <Label htmlFor="elite-sales" className="font-medium cursor-pointer">
+              {t('edit.configuration.behavior.eliteSales') || 'Vendedor Elite ArtGenial'}
+            </Label>
+            <p className="text-sm text-muted-foreground mt-1">
+              {t('edit.configuration.behavior.eliteSalesDescription') ||
+                'Ativa a venda consultiva supervisionada, sem autorizar descontos ou compromissos comerciais'}
+            </p>
+          </div>
+        </div>
+        <AgentToggle
+          id="elite-sales"
+          checked={behaviorSettings.eliteSales || behaviorSettings.customerJourney}
+          disabled={behaviorSettings.customerJourney}
+          onCheckedChange={checked =>
+            onBehaviorSettingsChange({ ...behaviorSettings, eliteSales: checked })
+          }
+        />
+      </div>
+
+      <div className="flex items-center justify-between gap-4 border-t border-border py-[18px] first:border-t-0">
+        <div className="flex items-start gap-3 flex-1">
+          <Sparkles className="h-5 w-5 text-violet-500 mt-0.5" />
+          <div className="flex-1">
+            <Label htmlFor="customer-journey" className="font-medium cursor-pointer">
+              {t('edit.configuration.behavior.customerJourney') ||
+                'Jornada completa de atendimento e crescimento'}
+            </Label>
+            <p className="text-sm text-muted-foreground mt-1">
+              {t('edit.configuration.behavior.customerJourneyDescription') ||
+                'Coordena recepção, vendas, suporte, pós-venda, reclamações, cancelamento, retenção e expansão ética'}
+            </p>
+          </div>
+        </div>
+        <AgentToggle
+          id="customer-journey"
+          checked={behaviorSettings.customerJourney}
+          onCheckedChange={checked =>
+            onBehaviorSettingsChange({ ...behaviorSettings, customerJourney: checked })
+          }
+        />
+      </div>
+
+      <div className="flex items-center justify-between gap-4 border-t border-border py-[18px] first:border-t-0">
+        <div className="flex items-start gap-3 flex-1">
+          <ShieldCheck className="h-5 w-5 text-sky-600 mt-0.5" />
+          <div className="flex-1">
+            <Label htmlFor="scope-guard" className="font-medium cursor-pointer">
+              {t('edit.configuration.behavior.scopeGuard') || 'Proteção de contexto da empresa'}
+            </Label>
+            <p className="text-sm text-muted-foreground mt-1">
+              {t('edit.configuration.behavior.scopeGuardDescription') ||
+                'Bloqueia orientações fora do atendimento e redireciona para o ramo e as principais dificuldades da empresa'}
+            </p>
+          </div>
+        </div>
+        <AgentToggle
+          id="scope-guard"
+          checked={behaviorSettings.scopeGuard}
+          onCheckedChange={checked =>
+            onBehaviorSettingsChange({ ...behaviorSettings, scopeGuard: checked })
+          }
+        />
+      </div>
+
+      <div className="flex items-center justify-between gap-4 border-t border-border py-[18px] first:border-t-0">
+        <div className="flex items-start gap-3 flex-1">
+          <Waypoints className="h-5 w-5 text-indigo-500 mt-0.5" />
+          <div className="flex-1">
+            <Label htmlFor="lead-pipeline-management" className="font-medium cursor-pointer">
+              {t('edit.configuration.behavior.leadPipelineManagement') || 'Gestão supervisionada de leads e pipeline'}
+            </Label>
+            <p className="text-sm text-muted-foreground mt-1">
+              {t('edit.configuration.behavior.leadPipelineManagementDescription') ||
+                'Orienta qualificação e etapas sem conceder permissão automática para alterar o CRM'}
+            </p>
+          </div>
+        </div>
+        <AgentToggle
+          id="lead-pipeline-management"
+          checked={behaviorSettings.leadPipelineManagement}
+          onCheckedChange={checked =>
+            onBehaviorSettingsChange({ ...behaviorSettings, leadPipelineManagement: checked })
+          }
+        />
+      </div>
+
       <div className="flex items-center justify-between gap-4 border-t border-border py-[18px] first:border-t-0">
         <div className="flex items-start gap-3 flex-1">
           <UserRound className="h-5 w-5 text-blue-500 mt-0.5" />
