@@ -61,7 +61,7 @@ export const availableModels = [
   // Vertex has no listing endpoint and no rolling alias, so these are pinned by hand.
   { value: 'vertex_ai/gemini-3.7-flash', label: 'Gemini 3.7 Flash (Vertex)', provider: 'vertex_ai' },
   { value: 'vertex_ai/gemini-3.1-flash-lite', label: 'Gemini 3.1 Flash-Lite (Vertex)', provider: 'vertex_ai' },
- ];
+];
 
 export interface ModelSelectorProps {
   value: string;

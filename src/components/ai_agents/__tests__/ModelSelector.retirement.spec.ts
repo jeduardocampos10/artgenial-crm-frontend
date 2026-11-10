@@ -18,9 +18,7 @@ import { availableModels } from '@/components/ai_agents/ModelSelector';
 // Bedrock is absent on purpose: its `Model EOL date` is a floor ("No sooner than …"), not
 // an expiry, so it is no deadline to assert. That axis reads the live lifecycle instead,
 // in ModelSelector.bedrockLifecycle.spec.ts.
-const RETIRES_ON: Record<string, string> = {
- const RETIRES_ON: Record<string, string> = {};
-};
+const RETIRES_ON: Record<string, string> = {};
 
 // A date is reached the moment ANY timezone is on it, which UTC is the last to be — up to
 // 14 hours behind Kiribati. Reading the calendar at UTC+14 makes the guard early rather
