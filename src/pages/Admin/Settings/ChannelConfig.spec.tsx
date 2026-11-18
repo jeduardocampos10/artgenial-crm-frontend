@@ -62,6 +62,7 @@ const EMPTY_WHATSAPP = {
 const EMPTY_INSTAGRAM = {
   INSTAGRAM_APP_ID: '',
   INSTAGRAM_APP_SECRET: null,
+  INSTAGRAM_LOGIN_CONFIG_ID: '',
   INSTAGRAM_VERIFY_TOKEN: '',
   INSTAGRAM_API_VERSION: '',
   ENABLE_INSTAGRAM_CHANNEL_HUMAN_AGENT: false,
@@ -87,6 +88,7 @@ const CONFIGURED_WHATSAPP = {
 const CONFIGURED_INSTAGRAM = {
   INSTAGRAM_APP_ID: 'test-ig-app-id',
   INSTAGRAM_APP_SECRET: '••••masked',
+  INSTAGRAM_LOGIN_CONFIG_ID: 'test-ig-config-id',
   INSTAGRAM_VERIFY_TOKEN: 'test-ig-verify-token',
   INSTAGRAM_API_VERSION: 'v18.0',
   ENABLE_INSTAGRAM_CHANNEL_HUMAN_AGENT: 'false',
@@ -236,6 +238,7 @@ describe('ChannelConfig', () => {
       expect(screen.getByLabelText('channels.instagram.fields.appId')).toBeInTheDocument();
     });
     expect(screen.getByLabelText('channels.instagram.fields.appSecret')).toBeInTheDocument();
+    expect(screen.getByLabelText('channels.instagram.fields.loginConfigId')).toBeInTheDocument();
     expect(screen.getByLabelText('channels.instagram.fields.verifyToken')).toBeInTheDocument();
     expect(screen.getByLabelText('channels.instagram.fields.apiVersion')).toBeInTheDocument();
     expect(screen.getByText('channels.instagram.fields.humanAgent')).toBeInTheDocument();
@@ -308,6 +311,7 @@ describe('ChannelConfig', () => {
     await waitFor(() => {
       expect(mockSaveConfig).toHaveBeenCalledWith('instagram', expect.objectContaining({
         INSTAGRAM_APP_ID: 'test-ig-app-id',
+        INSTAGRAM_LOGIN_CONFIG_ID: 'test-ig-config-id',
       }));
     });
   });

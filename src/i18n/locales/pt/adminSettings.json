@@ -222,8 +222,9 @@
     "instagram": {
       "tabTitle": "Instagram",
       "fields": {
-        "appId": "ID da App",
-        "appSecret": "Segredo da App",
+        "appId": "ID da App Meta / Instagram",
+        "appSecret": "Segredo da App Meta / Instagram",
+        "loginConfigId": "ID da configuração de login unificado",
         "verifyToken": "Token de Verificacao",
         "apiVersion": "Versao da API",
         "humanAgent": "Ativar Agente Humano"
@@ -231,6 +232,7 @@
       "placeholders": {
         "appId": "O seu Instagram App ID",
         "appSecret": "Introduza o novo segredo da app",
+        "loginConfigId": "Ex.: 1147065094382102",
         "verifyToken": "Introduza o token de verificacao",
         "apiVersion": "v18.0"
       },
