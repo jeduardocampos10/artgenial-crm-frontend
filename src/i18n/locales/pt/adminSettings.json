@@ -232,7 +232,7 @@
       "placeholders": {
         "appId": "O seu Instagram App ID",
         "appSecret": "Introduza o novo segredo da app",
-        "loginConfigId": "Ex.: 1147065094382102",
+        "loginConfigId": "Introduza o ID de configuração do Facebook Login for Business",
         "verifyToken": "Introduza o token de verificacao",
         "apiVersion": "v18.0"
       },
