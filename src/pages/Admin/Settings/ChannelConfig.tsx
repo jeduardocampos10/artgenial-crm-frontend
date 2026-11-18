@@ -64,6 +64,7 @@ function createInstagramSchema(t: T) {
   return z.object({
     INSTAGRAM_APP_ID: required(t),
     INSTAGRAM_APP_SECRET: required(t),
+    INSTAGRAM_LOGIN_CONFIG_ID: z.string().optional(),
     INSTAGRAM_VERIFY_TOKEN: required(t),
     INSTAGRAM_API_VERSION: z.string().optional(),
     ENABLE_INSTAGRAM_CHANNEL_HUMAN_AGENT: z.union([z.boolean(), z.string()]).optional(),
@@ -120,6 +121,7 @@ const WHATSAPP_DEFAULTS: WhatsAppFormData = {
 const INSTAGRAM_DEFAULTS: InstagramFormData = {
   INSTAGRAM_APP_ID: '',
   INSTAGRAM_APP_SECRET: '',
+  INSTAGRAM_LOGIN_CONFIG_ID: '',
   INSTAGRAM_VERIFY_TOKEN: '',
   INSTAGRAM_API_VERSION: '',
   ENABLE_INSTAGRAM_CHANNEL_HUMAN_AGENT: false,
@@ -875,6 +877,13 @@ export default function ChannelConfig() {
               t={t}
               required
               error={igShowErrors ? igErrors.INSTAGRAM_APP_SECRET?.message : undefined}
+            />
+            <TextField
+              id="INSTAGRAM_LOGIN_CONFIG_ID"
+              label={t('channels.instagram.fields.loginConfigId')}
+              placeholder={t('channels.instagram.placeholders.loginConfigId')}
+              register={instagramForm.register('INSTAGRAM_LOGIN_CONFIG_ID')}
+              error={igShowErrors ? igErrors.INSTAGRAM_LOGIN_CONFIG_ID : undefined}
             />
             <TextField
               id="INSTAGRAM_VERIFY_TOKEN"

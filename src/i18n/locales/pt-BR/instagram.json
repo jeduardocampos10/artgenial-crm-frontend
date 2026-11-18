@@ -19,7 +19,7 @@
   "createChannel": "Criar canal",
   "warnings": {
     "notConfigured": "Instagram não configurado",
-    "notConfiguredDescription": "A configuração INSTAGRAM_APP_ID não foi encontrada. Entre em contato com o administrador do sistema."
+    "notConfiguredDescription": "A configuração do Instagram está incompleta. Entre em contato com o administrador do sistema."
   },
   "duplicate": {
     "title": "Inbox Duplicado Detectado - Instagram",

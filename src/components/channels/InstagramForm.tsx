@@ -20,8 +20,9 @@ export default function InstagramForm({ onCancel }: InstagramFormProps) {
   const [isConnecting, setIsConnecting] = useState(false);
   const [inboxName, setInboxName] = useState('');
 
-  // Check if Instagram is properly configured
-  const isInstagramConfigured = !!config.instagramAppId;
+  // The backend is the source of truth for both supported modes. When a
+  // config_id is saved it uses Unified Login; otherwise legacy login remains.
+  const isInstagramConfigured = config.hasInstagramConfig === true;
 
   if (hubEnabled) {
     return (
