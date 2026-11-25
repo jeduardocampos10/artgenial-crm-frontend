@@ -34,8 +34,9 @@ export class BaseActionCableConnector {
   protected connectionParams: ConnectionParams;
   protected websocketURL?: string;
   protected reconnectAttempts = 0;
-
-  static isDisconnected = false;
+  // Estado pertence a esta conexão. Um estado estático fazia uma aba/canal
+  // derrubar ou liberar artificialmente todos os outros conectores.
+  protected isDisconnected = false;
 
   constructor(connectionParams: ConnectionParams, websocketHost?: string) {
     this.connectionParams = connectionParams;
@@ -73,7 +74,7 @@ export class BaseActionCableConnector {
           // Conectado com sucesso
           connected: () => {
             const wasReconnecting = this.reconnectAttempts > 0;
-            BaseActionCableConnector.isDisconnected = false;
+            this.isDisconnected = false;
             this.reconnectAttempts = 0;
             this.onConnected();
             this.startPresenceInterval();
@@ -85,7 +86,7 @@ export class BaseActionCableConnector {
 
           // Desconectado
           disconnected: () => {
-            BaseActionCableConnector.isDisconnected = true;
+            this.isDisconnected = true;
             this.onDisconnected();
             this.stopPresenceInterval();
             this.initReconnectTimer();
@@ -199,7 +200,7 @@ export class BaseActionCableConnector {
    * Chamado pelo timer de reconexão.
    */
   protected checkConnection(): void {
-    if (!BaseActionCableConnector.isDisconnected) {
+    if (!this.isDisconnected) {
       // Conexão restaurada — nada a fazer (onReconnected já foi chamado
       // pelo callback connected: via wasReconnecting)
       this.clearReconnectTimer();
@@ -244,7 +245,7 @@ export class BaseActionCableConnector {
     this.stopPresenceInterval();
 
     const updatePresence = () => {
-      if (this.subscription && !BaseActionCableConnector.isDisconnected) {
+      if (this.subscription && !this.isDisconnected) {
         this.perform('update_presence');
       }
 
@@ -294,7 +295,7 @@ export class BaseActionCableConnector {
    * Verificar se está conectado
    */
   public isConnected(): boolean {
-    return !!this.subscription && !BaseActionCableConnector.isDisconnected;
+    return !!this.subscription && !this.isDisconnected;
   }
 
   /**
@@ -313,7 +314,7 @@ export class BaseActionCableConnector {
       this.consumer.disconnect();
     }
 
-    BaseActionCableConnector.isDisconnected = true;
+    this.isDisconnected = true;
   }
 
   /**
